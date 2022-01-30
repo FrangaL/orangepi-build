@@ -144,7 +144,7 @@ create_rootfs_cache()
 		cp /usr/share/keyrings/*-archive-keyring.gpg $SDCARD/usr/share/keyrings/
 
 		display_alert "Installing base system" "Stage 2/2" "info"
-		eval 'chroot $SDCARD /bin/bash -c "/debootstrap/debootstrap --second-stage"' \
+		eval 'LANG=C chroot $SDCARD /bin/bash -c "/debootstrap/debootstrap --second-stage"' \
 			${PROGRESS_LOG_TO_FILE:+' | tee -a $DEST/debug/debootstrap.log'} \
 			${OUTPUT_DIALOG:+' | dialog --backtitle "$backtitle" --progressbox "Debootstrap (stage 2/2)..." $TTY_Y $TTY_X'} \
 			${OUTPUT_VERYSILENT:+' >/dev/null 2>/dev/null'}
