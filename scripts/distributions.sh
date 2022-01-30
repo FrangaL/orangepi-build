@@ -83,7 +83,7 @@ install_common()
 	fi
 
 	# configure MIN / MAX speed for cpufrequtils
-	cat <<-EOF > "${SDCARD}"/etc/default/cpufrequtils	
+	cat <<-EOF > "${SDCARD}"/etc/default/cpufrequtils
 	ENABLE=true
 	MIN_SPEED=$CPUMIN
 	MAX_SPEED=$CPUMAX
@@ -232,7 +232,7 @@ install_common()
         if [[ -n ${PACKAGE_LIST_FAMILY_REMOVE} ]]; then
                 chroot "${SDCARD}" /bin/bash -c "DEBIAN_FRONTEND=noninteractive  apt-get -yqq remove --auto-remove $PACKAGE_LIST_FAMILY_REMOVE" >> "${DEST}"/debug/install.log 2>&1
         fi
- 
+
         # remove board packages
         if [[ -n ${PACKAGE_LIST_BOARD_REMOVE} ]]; then
                 chroot "${SDCARD}" /bin/bash -c "DEBIAN_FRONTEND=noninteractive  apt-get -yqq remove --auto-remove $PACKAGE_LIST_BOARD_REMOVE" >> "${DEST}"/debug/install.log 2>&1
@@ -361,7 +361,7 @@ install_common()
 	cp "${EXTER}"/packages/blobs/splash/orangepi-u-boot.bmp "${SDCARD}"/boot/boot.bmp
 
 	# copy audio.wav
-	cp "${EXTER}"/packages/blobs/audio_wav/audio.wav "${SDCARD}"/usr/share/sounds/alsa/
+	[[ $BUILD_DESKTOP == "no" ]] || cp "${EXTER}"/packages/blobs/audio_wav/audio.wav "${SDCARD}"/usr/share/sounds/alsa/
 
 	# execute $LINUXFAMILY-specific tweaks
 	[[ $(type -t family_tweaks) == function ]] && family_tweaks
