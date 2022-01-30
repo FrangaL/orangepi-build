@@ -797,7 +797,7 @@ prepare_host()
 		#"gcc-linaro-4.9.4-2017.01-x86_64_aarch64-linux-gnu.tar.xz"
 		#"gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabihf.tar.xz"
 		#"gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabi.tar.xz"
-		"gcc-linaro-6.4.1-2017.11-x86_64_arm-linux-gnueabihf.tar.xz"
+		#"gcc-linaro-6.4.1-2017.11-x86_64_arm-linux-gnueabihf.tar.xz"
 		"gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz"
 		)
 
