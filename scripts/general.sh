@@ -137,7 +137,7 @@ create_sources_list()
 	[[ -z $basedir ]] && exit_with_error "No basedir passed to create_sources_list"
 
 	case $release in
-	stretch|buster|bullseye)
+	stretch|buster)
 	cat <<-EOF > "${basedir}"/etc/apt/sources.list
 	deb http://${DEBIAN_MIRROR} $release main contrib non-free
 	#deb-src http://${DEBIAN_MIRROR} $release main contrib non-free
@@ -150,6 +150,22 @@ create_sources_list()
 
 	deb http://${DEBIAN_SECURTY} ${release}/updates main contrib non-free
 	#deb-src http://${DEBIAN_SECURTY} ${release}/updates main contrib non-free
+	EOF
+	;;
+
+	bullseye)
+	cat <<-EOF > "${basedir}"/etc/apt/sources.list
+	deb http://${DEBIAN_MIRROR} $release main contrib non-free
+	#deb-src http://${DEBIAN_MIRROR} $release main contrib non-free
+
+	deb http://${DEBIAN_MIRROR} ${release}-updates main contrib non-free
+	#deb-src http://${DEBIAN_MIRROR} ${release}-updates main contrib non-free
+
+	deb http://${DEBIAN_MIRROR} ${release}-backports main contrib non-free
+	#deb-src http://${DEBIAN_MIRROR} ${release}-backports main contrib non-free
+
+	deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+	#deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
 	EOF
 	;;
 
