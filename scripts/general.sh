@@ -595,14 +595,9 @@ function distro_menu ()
 wait_for_package_manager()
 {
 	# exit if package manager is running in the back
-	while true; do
-		if [[ "$(fuser /var/lib/dpkg/lock 2>/dev/null; echo $?)" != 1 && "$(fuser /var/lib/dpkg/lock-frontend 2>/dev/null; echo $?)" != 1 ]]; then
-				display_alert "Package manager is running in the background." "Please wait! Retrying in 30 sec" "wrn"
-				sleep 30
-			else
-				break
-		fi
-	done
+	while fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock >/dev/null 2>&1; do
+    sleep 5
+  done
 }
 
 
